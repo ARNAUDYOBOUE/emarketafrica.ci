@@ -1,9 +1,9 @@
-import React from 'react';
-import { Table, Button, InputNumber, Space, Typography, Card, Divider, Popconfirm, message, Image, Badge} from 'antd';
+import { Table, Button, InputNumber, Space, Typography, Card, Divider, Popconfirm, message, Image } from 'antd';
 import { ShoppingCartOutlined, DeleteOutlined, ArrowLeftOutlined,CreditCardOutlined } from '@ant-design/icons';
 import { useCart } from '../context/CartContext';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../styles/OrderPage.css';
+import { ColumnsType } from 'antd/es/table';
 
 const { Title, Text } = Typography;
 
@@ -26,7 +26,7 @@ const OrderPage = () => {
   } = useCart();
   const navigate = useNavigate();
 
-  const columns: import('antd').ColumnsType<CartProduct> = [
+  const columns: ColumnsType<CartProduct> = [
     {
       title: 'Produit',
       dataIndex: 'product',

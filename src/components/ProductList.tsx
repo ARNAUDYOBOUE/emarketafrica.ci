@@ -110,7 +110,17 @@ const ProductList: React.FC = () => {
           <Row gutter={[24, 24]}>
             {filteredProducts.map((product) => (
               <Col xs={24} sm={12} md={8} lg={6} key={product._id}>
-                <ProductCard product={product} />
+                <ProductCard
+                  id={product._id}
+                  name={product.name}
+                  image={product.image}
+                  price={product.price}
+                  oldPrice={product.oldPrice}
+                  rating={product.rating}
+                  stock={product.stock}
+                  isNew={product.isNew}
+                  isPromo={product.isPromo}
+                />
               </Col>
             ))}
           </Row>

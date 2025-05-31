@@ -14,7 +14,6 @@ import {
 import { UploadOutlined } from '@ant-design/icons';
 import { getCategory, updateCategory } from '../services/categoryService';
 import { uploadImage } from '../services/uploadService';
-import { Category } from '../services/categoryService';
 
 const { Title } = Typography;
 
@@ -43,7 +42,7 @@ const EditCategoryPage: React.FC = () => {
           name: category.name,
           description: category.description
         });
-        setImageUrl(category.image);
+        setImageUrl(category.image || '');
       } catch (error) {
         console.error('Error fetching category:', error);
         message.error('Erreur lors du chargement de la catégorie');
@@ -78,9 +77,7 @@ const EditCategoryPage: React.FC = () => {
 
   const handleImageUpload = async (file: File) => {
     try {
-      const formData = new FormData();
-      formData.append('image', file);
-      const response = await uploadImage(formData);
+      const response = await uploadImage(file);
       setImageUrl(response.url);
       return false;
     } catch (error) {

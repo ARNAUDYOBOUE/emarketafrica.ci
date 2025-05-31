@@ -1,4 +1,3 @@
-import React from 'react';
 import { 
   Result, 
   Button, 
@@ -13,7 +12,7 @@ import {
   ShoppingOutlined,
   HomeOutlined
 } from '@ant-design/icons';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import '../styles/OrderConfirmation.css';
 
 const { Title, Text } = Typography;

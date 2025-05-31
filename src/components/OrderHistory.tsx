@@ -14,14 +14,22 @@ import {
   HistoryOutlined,
   HomeOutlined
 } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
 import '../styles/OrderConfirmation.css';
+import { ColumnType } from 'antd/es/table';
 
 const { Title, Text } = Typography;
 
+interface PaymentHistoryItem {
+  orderId: string;
+  date: string;
+  amount: number;
+  paymentMethod: string;
+  // autres champs si besoin
+}
+
 const PaymentHistory = () => {
   const [loading, setLoading] = useState(true);
-  const [paymentHistory, setPaymentHistory] = useState([]);
+  const [paymentHistory, setPaymentHistory] = useState<PaymentHistoryItem[]>([]);
 
   useEffect(() => {
     // Simuler un chargement de données
@@ -35,24 +43,24 @@ const PaymentHistory = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const columns = [
+  const columns: ColumnType<PaymentHistoryItem>[] = [
     {
       title: 'Référence',
       dataIndex: 'orderId',
       key: 'orderId',
-      render: (text) => <Text strong>{text}</Text>,
+      render: (text: string) => <Text strong>{text}</Text>,
     },
     {
       title: 'Date',
       dataIndex: 'date',
       key: 'date',
-      render: (date) => new Date(date).toLocaleString(),
+      render: (date: string) => new Date(date).toLocaleString(),
     },
     {
       title: 'Montant',
       dataIndex: 'amount',
       key: 'amount',
-      render: (amount) => `FCFA ${amount.toFixed(2)}`,
+      render: (amount: number) => `FCFA ${amount.toFixed(2)}`,
       align: 'right',
     },
     {

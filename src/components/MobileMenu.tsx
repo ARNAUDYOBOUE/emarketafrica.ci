@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { 
   UserOutlined, 
   HeartOutlined, 
@@ -9,7 +9,9 @@ import {
 import { Link, NavLink } from 'react-router-dom';
 import '../styles/HeaderComponent.css';
 
-const MobileMenu = ({ open, onClose, navItems, user, onLogout }) => {
+interface MobileMenuProps { open: boolean; onClose: () => void; navItems: NavItem[]; user: User | null; onLogout: () => void; }
+
+const MobileMenu = ({ open, onClose, navItems, user, onLogout }: MobileMenuProps) => {
   // Prévenir le défilement du body quand le menu mobile est ouvert
   useEffect(() => {
     if (open) {
@@ -61,7 +63,7 @@ const MobileMenu = ({ open, onClose, navItems, user, onLogout }) => {
         
         {/* Navigation mobile */}
         <nav className="mobile-navigation">
-          {navItems.map((item) => (
+          {navItems.map((item: NavItem) => (
             <NavLink 
               key={item.path} 
               to={item.path}

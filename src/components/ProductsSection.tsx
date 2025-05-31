@@ -1,28 +1,21 @@
 // ProductsSection.jsx 
 import React, { useState, useEffect } from 'react';
-import { Card, Row, Col, Tag, Spin, Empty, Rate, Pagination, Input, Button, Space, Dropdown, Menu, message, Tooltip } from 'antd';
-import { Link, useNavigate } from 'react-router-dom';
+import { Card, Tag, Spin, Pagination, Input, Button, Space, Tooltip, message } from 'antd';
+import { useNavigate } from 'react-router-dom';
 import { 
   SearchOutlined, 
-  ShoppingCartOutlined, 
   PlusOutlined, 
   EditOutlined, 
   DeleteOutlined, 
-  MoreOutlined,
   FilterOutlined,
   SortAscendingOutlined,
-  HeartOutlined,
-  ShareAltOutlined,
   EyeOutlined
 } from '@ant-design/icons';
-import client from '../api/client';
 import '../styles/ProductsPage.css';
 import { getProducts, Product, deleteProduct } from '../services/productService';
 import ProductCard from './ProductCard';
 import { getImageUrl, handleImageError } from '../utils/imageUtils';
 import { useAuth } from '../context/AuthContext';
-
-const { Meta } = Card;
 
 interface ProductsSectionProps {
   title: string;
@@ -94,17 +87,6 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
       message.error('Erreur lors de la suppression du produit');
     }
   };
-
-  const productMenu = (productId: string) => (
-    <Menu>
-      <Menu.Item key="edit" icon={<EditOutlined />} onClick={() => navigate(`/admin/products/edit/${productId}`)}>
-        Modifier
-      </Menu.Item>
-      <Menu.Item key="delete" icon={<DeleteOutlined />} onClick={() => handleDeleteProduct(productId)}>
-        Supprimer
-      </Menu.Item>
-    </Menu>
-  );
 
   // Filtrer les produits en fonction de la recherche et de la catégorie
   const filteredProducts = products.filter(product => {

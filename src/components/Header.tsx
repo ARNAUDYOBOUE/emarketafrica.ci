@@ -11,9 +11,7 @@ import {
   PlusOutlined 
 } from '@ant-design/icons';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { Badge } from 'antd';
 import '../styles/HeaderComponent.css';
-import { useAuth } from '../context/AuthContext';
 import logo from '../../public/logob.jpg';
 
 const HeaderComponent = () => {
@@ -202,7 +200,7 @@ const HeaderComponent = () => {
               <div className="mobile-menu-title">emarketafrica</div>
               <button 
                 className="mobile-menu-close" 
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={(event: React.MouseEvent<HTMLButtonElement>) => setMobileMenuOpen(false)}
               >
                 <CloseOutlined />
               </button>
@@ -233,7 +231,7 @@ const HeaderComponent = () => {
                   key={item.id}
                   to={item.path}
                   className={({ isActive }) => `mobile-nav-item ${isActive ? 'active' : ''}`}
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={(event: React.MouseEvent<HTMLAnchorElement>) => setMobileMenuOpen(false)}
                 >
                   {item.name}
                 </NavLink>
@@ -241,7 +239,7 @@ const HeaderComponent = () => {
               <NavLink 
                 to="/add-product"
                 className={({ isActive }) => `mobile-nav-item ${isActive ? 'active' : ''}`}
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={(event: React.MouseEvent<HTMLAnchorElement>) => setMobileMenuOpen(false)}
               >
                 <PlusOutlined style={{ marginRight: 8 }} />
                 Ajouter Produit
@@ -249,15 +247,15 @@ const HeaderComponent = () => {
             </nav>
             
             <div className="mobile-actions">
-              <Link to="/profile" className="mobile-action-item" onClick={() => setMobileMenuOpen(false)}>
+              <Link to="/profile" className="mobile-action-item" onClick={(event: React.MouseEvent<HTMLAnchorElement>) => setMobileMenuOpen(false)}>
                 <UserOutlined className="mobile-action-icon" />
                 <span className="mobile-action-label">Profil</span>
               </Link>
-              <Link to="/wishlist" className="mobile-action-item" onClick={() => setMobileMenuOpen(false)}>
+              <Link to="/wishlist" className="mobile-action-item" onClick={(event: React.MouseEvent<HTMLAnchorElement>) => setMobileMenuOpen(false)}>
                 <HeartOutlined className="mobile-action-icon" />
                 <span className="mobile-action-label">Favoris</span>
               </Link>
-              <Link to="/cart" className="mobile-action-item" onClick={() => setMobileMenuOpen(false)}>
+              <Link to="/cart" className="mobile-action-item" onClick={(event: React.MouseEvent<HTMLAnchorElement>) => setMobileMenuOpen(false)}>
                 <ShoppingCartOutlined className="mobile-action-icon" />
                 <span className="mobile-action-label">Panier</span>
               </Link>
